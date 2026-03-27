@@ -9,7 +9,7 @@ A Minecraft plugin for Paper/Pulse 1.21+ that adds player head drops on death wi
 - **Glowing Effect**: Optional glowing heads with customizable color and duration
 - **Auto-Despawn**: Automatic cleanup after configurable time
 - **Multi-Language**: Russian and English support
-- **Pulse API Integration**: 
+- **Pulse API**: 
   - Optimized packet batching for better performance
   - Virtual block markers (client-side only)
   - Network buffer optimization
