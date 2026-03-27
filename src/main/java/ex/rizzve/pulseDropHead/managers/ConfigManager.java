@@ -16,7 +16,6 @@ public class ConfigManager {
     private int glowingDuration;
     private boolean despawnEnabled;
     private int despawnTime;
-    private boolean virtualMarkers;
     
     public ConfigManager(PulseDropHead plugin) {
         this.plugin = plugin;
@@ -36,7 +35,6 @@ public class ConfigManager {
         glowingDuration = config.getInt("glowing.duration-seconds", 30);
         despawnEnabled = config.getBoolean("despawn.enabled", true);
         despawnTime = config.getInt("despawn.time-seconds", 300);
-        virtualMarkers = config.getBoolean("pulse.virtual-markers", false);
     }
     
     private DropMode parseDropMode(String mode) {
@@ -82,10 +80,6 @@ public class ConfigManager {
     
     public int getDespawnTime() {
         return despawnTime;
-    }
-    
-    public boolean isVirtualMarkers() {
-        return virtualMarkers;
     }
     
     public enum DropMode {

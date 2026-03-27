@@ -25,8 +25,3 @@ despawn:
   enabled: true
   # time in seconds before head despawns
   time-seconds: 300 # 300 = 5 min.
-
-# pulse features
-pulse:
-  # enable virtual beacon markers above dropped heads (client-side only)
-  virtual-markers: false

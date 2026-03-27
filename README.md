@@ -1,6 +1,10 @@
 # PulseDropHead
 
+<<<<<<< HEAD
 A Minecraft plugin for Pulse 1.21.11 that adds player head drops on death with advanced features.
+=======
+A Minecraft plugin for Paper/Purpur/Pulse 1.21.11+ that adds player head drops on death with advanced features.
+>>>>>>> ac19325 (Update PulseDropHead - Availability on Pulse and Purpur)
 
 ## Features
 
@@ -9,10 +13,15 @@ A Minecraft plugin for Pulse 1.21.11 that adds player head drops on death with a
 - **Glowing Effect**: Optional glowing heads with customizable color and duration
 - **Auto-Despawn**: Automatic cleanup after configurable time
 - **Multi-Language**: Russian and English support
+<<<<<<< HEAD
 - **Pulse API**: 
   - Optimized packet batching for better performance
   - Virtual block markers (client-side only)
   - Network buffer optimization
+=======
+- **Cross-Platform**: Works on Paper, Purpur, and Pulse
+- **Pulse Optimization**: Automatic packet batching when running on Pulse
+>>>>>>> ac19325 (Update PulseDropHead - Availability on Pulse and Purpur)
 
 ## Commands
 
@@ -31,7 +40,6 @@ See `config.yml` for detailed configuration options including:
 - Drop chance percentage
 - Glowing effects
 - Auto-despawn settings
-- Pulse API features
 
 ## Building
 
@@ -43,8 +51,15 @@ The compiled JAR will be in `build/libs/`
 
 ## Requirements
 
-- Paper/Pulse 1.21+
+- Paper/Purpur/Pulse 1.21.11+
 - Java 21+
+
+## Pulse Integration
+
+When running on Pulse, the plugin automatically enables:
+- Network packet batching optimization
+- Reduced system call overhead
+- Better performance for mass head distribution
 
 ## License
 

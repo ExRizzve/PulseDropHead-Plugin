@@ -1,7 +1,5 @@
 package ex.rizzve.pulseDropHead.utils;
 
-import dev.pulsemc.pulse.api.network.NetworkBuffer;
-import dev.pulsemc.pulse.api.network.PulsePlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -18,18 +16,38 @@ public class PacketOptimizer {
     private final JavaPlugin plugin;
     private final Map<UUID, List<ItemStack>> pendingItems;
     private final int batchDelay;
+    private final boolean pulseAvailable;
     private boolean isProcessing;
     
     public PacketOptimizer(JavaPlugin plugin, int batchDelayTicks) {
         this.plugin = plugin;
         this.pendingItems = new HashMap<>();
         this.batchDelay = batchDelayTicks;
-        this.isProcessing = false;
+        this.pulseAvailable = checkPulseAPI();
+        
+        if (pulseAvailable) {
+            plugin.getLogger().info("Pulse detected. PacketOptimizer is working.");
+        } else {
+            plugin.getLogger().info("Running on Paper/Purpur. PacketOptimizer is not working");
+        }
+    }
+    
+    private boolean checkPulseAPI() {
+        try {
+            Class.forName("dev.pulsemc.pulse.api.network.PulsePlayer");
+            return true;
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
     }
     
     public void queueItemGive(Player player, ItemStack item) {
-        UUID playerId = player.getUniqueId();
+        if (!pulseAvailable) {
+            player.getInventory().addItem(item);
+            return;
+        }
         
+        UUID playerId = player.getUniqueId();
         pendingItems.computeIfAbsent(playerId, k -> new ArrayList<>()).add(item);
         
         if (!isProcessing) {
@@ -63,12 +81,24 @@ public class PacketOptimizer {
                     player.getInventory().addItem(item);
                 }
                 
-                PulsePlayer pulsePlayer = PulsePlayer.from(player);
-                if (pulsePlayer != null) {
-                    NetworkBuffer buffer = pulsePlayer.getBuffer();
-                    buffer.flush();
+                if (pulseAvailable) {
+                    flushPulseBuffer(player);
                 }
             }
+        }
+    }
+    
+    private void flushPulseBuffer(Player player) {
+        try {
+            Class<?> pulsePlayerClass = Class.forName("dev.pulsemc.pulse.api.network.PulsePlayer");
+            Object pulsePlayer = pulsePlayerClass.getMethod("from", Player.class).invoke(null, player);
+            
+            if (pulsePlayer != null) {
+                Object buffer = pulsePlayer.getClass().getMethod("getBuffer").invoke(pulsePlayer);
+                buffer.getClass().getMethod("flush").invoke(buffer);
+            }
+        } catch (Exception e) {
+            plugin.getLogger().warning("Failed to flush Pulse buffer: " + e.getMessage());
         }
     }
     
@@ -81,5 +111,9 @@ public class PacketOptimizer {
     
     public int getPendingCount() {
         return pendingItems.values().stream().mapToInt(List::size).sum();
+    }
+    
+    public boolean isPulseAvailable() {
+        return pulseAvailable;
     }
 }

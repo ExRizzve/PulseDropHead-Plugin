@@ -2,7 +2,6 @@ package ex.rizzve.pulseDropHead;
 
 import ex.rizzve.pulseDropHead.commands.Cmd;
 import ex.rizzve.pulseDropHead.effects.GlowingEffects;
-import ex.rizzve.pulseDropHead.effects.VirtualHeadMarker;
 import ex.rizzve.pulseDropHead.listeners.Events;
 import ex.rizzve.pulseDropHead.managers.ConfigManager;
 import ex.rizzve.pulseDropHead.managers.DespawnManager;
@@ -18,7 +17,6 @@ public final class PulseDropHead extends JavaPlugin {
     private GlowingEffects glowingEffects;
     private DespawnManager despawnManager;
     private PacketOptimizer packetOptimizer;
-    private VirtualHeadMarker virtualHeadMarker;
 
     @Override
     public void onEnable() {
@@ -45,18 +43,18 @@ public final class PulseDropHead extends JavaPlugin {
         
         packetOptimizer = new PacketOptimizer(this, 2);
         
-        virtualHeadMarker = new VirtualHeadMarker(
-            this,
-            configManager.isVirtualMarkers()
-        );
-        
         getServer().getPluginManager().registerEvents(new Events(this), this);
         
         Cmd commandExecutor = new Cmd(this);
         getCommand("pulsedrophead").setExecutor(commandExecutor);
         getCommand("pulsedrophead").setTabCompleter(new ex.rizzve.pulseDropHead.commands.TabCompleter());
         
+<<<<<<< HEAD
         getLogger().info("PulseDropHead enabled");
+=======
+        String serverType = packetOptimizer.isPulseAvailable() ? "Pulse" : "Paper/Purpur";
+        getLogger().info("PulseDropHead enabled on " + serverType + ".");
+>>>>>>> ac19325 (Update PulseDropHead - Availability on Pulse and Purpur)
     }
 
     @Override
@@ -69,9 +67,6 @@ public final class PulseDropHead extends JavaPlugin {
         }
         if (packetOptimizer != null) {
             packetOptimizer.forceFlush();
-        }
-        if (virtualHeadMarker != null) {
-            virtualHeadMarker.cleanup();
         }
     }
 
@@ -97,9 +92,5 @@ public final class PulseDropHead extends JavaPlugin {
 
     public PacketOptimizer getPacketOptimizer() {
         return packetOptimizer;
-    }
-
-    public VirtualHeadMarker getVirtualHeadMarker() {
-        return virtualHeadMarker;
     }
 }
