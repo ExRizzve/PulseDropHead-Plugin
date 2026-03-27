@@ -97,8 +97,7 @@ public class Cmd implements CommandExecutor {
         
         skull.setItemMeta(meta);
         
-        plugin.getPacketOptimizer().queueItemGive(target, skull);
-        
+        target.getInventory().addItem(skull);
         sender.sendMessage(getLang().getMessage("head-given")
                 .replace("%owner%", headOwner.getName())
                 .replace("%target%", target.getName()));

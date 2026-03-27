@@ -6,7 +6,6 @@ import ex.rizzve.pulseDropHead.listeners.Events;
 import ex.rizzve.pulseDropHead.managers.ConfigManager;
 import ex.rizzve.pulseDropHead.managers.DespawnManager;
 import ex.rizzve.pulseDropHead.managers.LanguageManager;
-import ex.rizzve.pulseDropHead.utils.PacketOptimizer;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class PulseDropHead extends JavaPlugin {
@@ -16,7 +15,6 @@ public final class PulseDropHead extends JavaPlugin {
     private LanguageManager languageManager;
     private GlowingEffects glowingEffects;
     private DespawnManager despawnManager;
-    private PacketOptimizer packetOptimizer;
 
     @Override
     public void onEnable() {
@@ -41,16 +39,13 @@ public final class PulseDropHead extends JavaPlugin {
             configManager.getDespawnTime()
         );
         
-        packetOptimizer = new PacketOptimizer(this, 2);
-        
         getServer().getPluginManager().registerEvents(new Events(this), this);
         
         Cmd commandExecutor = new Cmd(this);
         getCommand("pulsedrophead").setExecutor(commandExecutor);
         getCommand("pulsedrophead").setTabCompleter(new ex.rizzve.pulseDropHead.commands.TabCompleter());
         
-        String serverType = packetOptimizer.isPulseAvailable() ? "Pulse" : "Paper/Purpur";
-        getLogger().info("PulseDropHead enabled on " + serverType + "!");
+        getLogger().info("PulseDropHead enabled!");
     }
 
     @Override
@@ -60,9 +55,6 @@ public final class PulseDropHead extends JavaPlugin {
         }
         if (despawnManager != null) {
             despawnManager.shutdown();
-        }
-        if (packetOptimizer != null) {
-            packetOptimizer.forceFlush();
         }
     }
 
@@ -84,9 +76,5 @@ public final class PulseDropHead extends JavaPlugin {
 
     public DespawnManager getDespawnManager() {
         return despawnManager;
-    }
-
-    public PacketOptimizer getPacketOptimizer() {
-        return packetOptimizer;
     }
 }
