@@ -49,12 +49,8 @@ public final class PulseDropHead extends JavaPlugin {
         getCommand("pulsedrophead").setExecutor(commandExecutor);
         getCommand("pulsedrophead").setTabCompleter(new ex.rizzve.pulseDropHead.commands.TabCompleter());
         
-<<<<<<< HEAD
-        getLogger().info("PulseDropHead enabled");
-=======
         String serverType = packetOptimizer.isPulseAvailable() ? "Pulse" : "Paper/Purpur";
-        getLogger().info("PulseDropHead enabled on " + serverType + ".");
->>>>>>> ac19325 (Update PulseDropHead - Availability on Pulse and Purpur)
+        getLogger().info("PulseDropHead enabled on " + serverType + "!");
     }
 
     @Override
