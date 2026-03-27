@@ -56,7 +56,7 @@ public final class PulseDropHead extends JavaPlugin {
         getCommand("pulsedrophead").setExecutor(commandExecutor);
         getCommand("pulsedrophead").setTabCompleter(new ex.rizzve.pulseDropHead.commands.TabCompleter());
         
-        getLogger().info("PulseDropHead enabled with Pulse API integration!");
+        getLogger().info("PulseDropHead enabled");
     }
 
     @Override
