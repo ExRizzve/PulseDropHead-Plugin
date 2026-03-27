@@ -1,6 +1,6 @@
 # PulseDropHead
 
-A Minecraft plugin for Paper/Pulse 1.21+ that adds player head drops on death with advanced features.
+A Minecraft plugin for Pulse 1.21.11 that adds player head drops on death with advanced features.
 
 ## Features
 
