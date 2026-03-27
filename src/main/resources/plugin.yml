@@ -1,0 +1,13 @@
+name: PulseDropHead
+version: '1.0'
+main: ex.rizzve.pulseDropHead.PulseDropHead
+api-version: '1.21'
+authors: [rizzve]
+website: https://github.com/ExRizzve
+description: Dropping the player's head when he dies. Pulse WebSite - https://pulsemc.dev/
+
+commands:
+  pulsedrophead:
+    description: cmd
+    usage: /pulsedrophead givehead <player> <head_owner>
+    aliases: [pdh]

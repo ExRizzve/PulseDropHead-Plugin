@@ -1,0 +1,8 @@
+no-permission: "§cYou don't have permission to use this command"
+usage-givehead: "§cUsage: /pulsedrophead givehead <player> <head_owner>"
+player-not-found: "§cPlayer %player% not found"
+head-given: "§aHead of player %owner% given to player %target%"
+language-changed: "§aLanguage changed to: %lang%"
+invalid-language: "§cInvalid language. Available: ru, eng"
+usage-lang: "§cUsage: /pulsedrophead lang <ru|eng>"
+reload-success: "§aConfiguration reloaded"
