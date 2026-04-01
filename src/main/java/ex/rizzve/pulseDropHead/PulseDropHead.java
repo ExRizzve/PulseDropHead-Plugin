@@ -6,6 +6,7 @@ import ex.rizzve.pulseDropHead.listeners.Events;
 import ex.rizzve.pulseDropHead.managers.ConfigManager;
 import ex.rizzve.pulseDropHead.managers.DespawnManager;
 import ex.rizzve.pulseDropHead.managers.LanguageManager;
+import ex.rizzve.pulseDropHead.utils.UpdateChecker;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class PulseDropHead extends JavaPlugin {
@@ -44,6 +45,8 @@ public final class PulseDropHead extends JavaPlugin {
         Cmd commandExecutor = new Cmd(this);
         getCommand("pulsedrophead").setExecutor(commandExecutor);
         getCommand("pulsedrophead").setTabCompleter(new ex.rizzve.pulseDropHead.commands.TabCompleter());
+        
+        new UpdateChecker(this, "nvdKfPz5").checkForUpdates();
         
         getLogger().info("PulseDropHead enabled!");
     }

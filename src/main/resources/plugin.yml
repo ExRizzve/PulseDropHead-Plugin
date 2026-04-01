@@ -1,10 +1,10 @@
 name: PulseDropHead
-version: '1.0'
+version: '1.2'
 main: ex.rizzve.pulseDropHead.PulseDropHead
 api-version: '1.21'
 authors: [rizzve]
 website: https://github.com/ExRizzve
-description: Player head drops plugin for Pulse 1.21.11+ - https://pulsemc.dev/
+description: Player head drops plugin for Pulse/Purpur/Paper 1.21.11+ - https://pulsemc.dev/
 
 commands:
   pulsedrophead:

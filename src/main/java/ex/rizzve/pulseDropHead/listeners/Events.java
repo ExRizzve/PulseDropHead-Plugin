@@ -56,8 +56,21 @@ public class Events implements Listener {
             return;
         }
         
-        ItemStack skull = createPlayerHead(player);
         Location deathLocation = player.getLocation();
+        
+        if (config.isLightningEnabled()) {
+            player.getWorld().strikeLightningEffect(deathLocation);
+        }
+        
+        if (config.isDeathMessageEnabled() && killer != null) {
+            String message = config.getDeathMessageFormat()
+                    .replace("%player%", player.getName())
+                    .replace("%killer%", killer.getName());
+            
+            Bukkit.broadcast(ex.rizzve.pulseDropHead.utils.ColorUtils.parseColors(message));
+        }
+        
+        ItemStack skull = createPlayerHead(player);
         
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
             Item droppedHead = player.getWorld().dropItemNaturally(deathLocation, skull);

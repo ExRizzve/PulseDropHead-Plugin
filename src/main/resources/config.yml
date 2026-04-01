@@ -25,3 +25,16 @@ despawn:
   enabled: true
   # time in seconds before head despawns
   time-seconds: 300 # 300 = 5 min.
+
+# lightning effect on death
+lightning:
+  # enable visual lightning strike on player death (no damage, visual only)
+  enabled: false
+
+# death message settings
+death-message:
+  # enable custom death message in chat
+  enabled: false
+  # message format - %player% = victim name, %killer% = killer name
+  # supports HEX colors: &#FF5555 or legacy codes: &c, &a, etc.
+  format: "&#FF5555 %player% &#FFFFFFwas killed by &#55FF55%killer%"

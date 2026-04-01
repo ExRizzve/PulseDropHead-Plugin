@@ -16,6 +16,9 @@ public class ConfigManager {
     private int glowingDuration;
     private boolean despawnEnabled;
     private int despawnTime;
+    private boolean lightningEnabled;
+    private boolean deathMessageEnabled;
+    private String deathMessageFormat;
     
     public ConfigManager(PulseDropHead plugin) {
         this.plugin = plugin;
@@ -35,6 +38,9 @@ public class ConfigManager {
         glowingDuration = config.getInt("glowing.duration-seconds", 30);
         despawnEnabled = config.getBoolean("despawn.enabled", true);
         despawnTime = config.getInt("despawn.time-seconds", 300);
+        lightningEnabled = config.getBoolean("lightning.enabled", false);
+        deathMessageEnabled = config.getBoolean("death-message.enabled", false);
+        deathMessageFormat = config.getString("death-message.format", "&#FF5555💀 %player% &#FFFFFFwas killed by &#55FF55%killer%");
     }
     
     private DropMode parseDropMode(String mode) {
@@ -80,6 +86,18 @@ public class ConfigManager {
     
     public int getDespawnTime() {
         return despawnTime;
+    }
+    
+    public boolean isLightningEnabled() {
+        return lightningEnabled;
+    }
+    
+    public boolean isDeathMessageEnabled() {
+        return deathMessageEnabled;
+    }
+    
+    public String getDeathMessageFormat() {
+        return deathMessageFormat;
     }
     
     public enum DropMode {
